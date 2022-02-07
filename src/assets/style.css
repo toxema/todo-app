@@ -1,0 +1,25 @@
+body html {
+  margin: 0px;
+  padding: 0px; background: rgb(209, 209, 209);
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+ 
+    color: #778ea5;
+    
+  }
+  h3 {
+    margin: 40px 0 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+ 
+  a {
+    color: #42b983;
+  }
+  
