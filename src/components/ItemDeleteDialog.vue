@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-     inject: ['apim'],
+  inject: ["apim"],
   methods: {
     onOk() {
       this.$emit("delete-item");

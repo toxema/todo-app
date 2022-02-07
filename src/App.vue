@@ -14,6 +14,7 @@
 import HeaderBar from "@/components/HeaderBar.vue";
 import TodoList from "@/components/TodoList.vue";
 import AddTodo from "@/components/AddTodo.vue";
+import axios from "axios";
 
 export default {
   name: "App",
@@ -27,38 +28,48 @@ export default {
       apim: this,
     };
   },
+  mounted() {
+    this.getTodos();
+  },
   methods: {
+    getTodos() {
+      axios.get("http://localhost:3000/todos").then((response) => {
+        console.log(response);
+        this.todoItems = response.data;
+      });
+    },
     deleteItem(item) {
+      axios.delete(`http://localhost:3000/todos/${item.id}`).then((response) => {
+        console.log(response);
+        this.todoItems = this.todoItems.filter((i) => i.id != item.id);
+        //this.todoItems.push(response.data);
+      });
       this.todoItems = this.todoItems.filter((i) => i.id != item.id);
     },
     saveTodo(data) {
       console.log("save-todo", data);
     },
-     test(data) {
+    test(data) {
       console.log("test-todo", data);
     },
     addTodo(item) {
-      this.todoItems.push({
+      const obj = {
         id: new Date(),
         text: item,
+      };
+
+      axios.post("http://localhost:3000/todos", obj).then((response) => {
+        console.log(response);
+        this.todoItems.push(response.data);
       });
     },
   },
   data() {
     return {
-      todoItems: [
-        { id: new Date(), text: " Todo App content #2.0" },
-        { id: new Date(), text: " Todo App content #2.1" },
-        { id: new Date(), text: " Todo App content #2.2" },
-        { id: new Date(), text: " Todo App content #2.3" },
-        { id: new Date(), text: " Todo App content #2.4" },
-        { id: new Date(), text: " Todo App content #2.5" },
-        { id: new Date(), text: " Todo App content #2.6" },
-      ],
+      todoItems: [],
     };
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
