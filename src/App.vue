@@ -57,6 +57,7 @@ export default {
         id: new Date(),
         text: item,
       };
+      console.log(item);
 
       axios.post("http://localhost:3000/todos", obj).then((response) => {
         console.log(response);
